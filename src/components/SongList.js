@@ -31,7 +31,6 @@ class SongList extends Component {
         const { data } = this.props;
         return (
             <div>
-                <div className="ui medium header" style={styles}><i class="music icon"></i>Albums:</div>
                 <Treebeard
                     data={data}
                     onToggle={this.onToggle}
@@ -53,11 +52,14 @@ const mapStateToProps = state => {
         const ch = result[key].map(function (obj) {
             return { name: obj.song };
         });
-
         acc.push({ name: key, toggled: false, children: ch });
+
         return acc;
     }, []);
-    return { data: songs };
+
+    const album = (({ name: "Albums", toggle: false, children: songs }))
+
+    return { data: album };
 };
 
 export default connect(mapStateToProps, {})(SongList);
